@@ -1,0 +1,66 @@
+{
+  "rules": {
+    "document": {
+      "name": "document",
+      "options": [{ "pattern": [{ "rule": "something" }] }]
+    },
+    "something": {
+      "name": "something",
+      "options": [
+        {
+          "pattern": [
+            { "text": "[" },
+            { "list": { "rule": "something" }, "separator": { "text": "," } },
+            { "text": "]" }
+          ],
+          "export": { "variable": 2 }
+        },
+        {
+          "pattern": [
+            { "text": "{" },
+            { "list": { "rule": "pair" }, "separator": { "text": "," } },
+            { "text": "}" }
+          ],
+          "export": { "properties": [{ "variable": 2, "spread": true }] }
+        },
+        { "pattern": [{ "rule": "string-double" }] },
+        { "pattern": [{ "rule": "number" }] },
+        { "pattern": [{ "rule": "boolean" }] },
+        { "pattern": [{ "rule": "null" }] }
+      ]
+    },
+    "pair": {
+      "name": "pair",
+      "options": [
+        {
+          "pattern": [
+            { "rule": "string-double" },
+            { "text": ":" },
+            { "rule": "something" }
+          ],
+          "export": {
+            "properties": [
+              { "key": { "variable": 1 }, "value": { "variable": 3 } }
+            ]
+          }
+        },
+        {
+          "pattern": [
+            { "rule": "text" },
+            { "text": ":" },
+            { "rule": "something" }
+          ],
+          "export": {
+            "properties": [
+              { "key": { "variable": 1 }, "value": { "variable": 3 } }
+            ]
+          }
+        }
+      ]
+    },
+    "ignore": {
+      "name": "ignore",
+      "options": [{ "pattern": [{ "regex": "[ \\n]+" }] }]
+    }
+  }
+}

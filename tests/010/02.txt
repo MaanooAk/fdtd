@@ -1,0 +1,6 @@
+{
+  things: [
+    { name: "the thing", price: 1 },
+    { name: "the other thing", price: 1.25 }
+  ]
+}

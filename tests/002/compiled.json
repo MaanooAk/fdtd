@@ -1,0 +1,21 @@
+{
+  "rules": {
+    "document": {
+      "name": "document",
+      "options": [
+        {
+          "pattern": [
+            { "list": { "rule": "item" }, "separator": { "text": "," } }
+          ]
+        }
+      ]
+    },
+    "item": {
+      "name": "item",
+      "options": [
+        { "pattern": [{ "rule": "number" }] },
+        { "pattern": [{ "rule": "text" }] }
+      ]
+    }
+  }
+}

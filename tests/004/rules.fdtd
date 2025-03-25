@@ -1,0 +1,6 @@
+
+document
+person*'\n'
+
+person
+text = { id: ${(() => { let i = 100; return () => i++ })()}, name: $1 }

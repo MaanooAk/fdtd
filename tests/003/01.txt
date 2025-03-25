@@ -1,0 +1,5 @@
+
+programmer + problem = solution
+10 programmer + 1 problem = 0 solutions
+100 programmer + 1 problem = 0 solutions #assumption
+100 programmer + problem = solutions + end #assumption #tag1#tag2 #tag3

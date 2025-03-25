@@ -1,0 +1,18 @@
+
+document
+something
+
+something
+'[' something*',' ']' = $2
+'{' pair*',' '}' = { ...$2 }
+string-double
+number
+boolean
+null
+
+pair
+string-double ':' something = { $1: $3 }
+text ':' something = { $1: $3 }
+
+ignore
+/[ \n]+/

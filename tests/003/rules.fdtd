@@ -1,0 +1,13 @@
+
+document
+recipe*'\n' = { recipes: $1 }
+
+recipe
+count*'+' '=' count*'+' tag*'' = { input: $1, output: $3, tags: $4 }
+
+count
+number text = { $2: $1 }
+text = { $1: 1 }
+
+tag
+'#' text = $2

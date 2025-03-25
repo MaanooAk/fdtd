@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "document": {
+      "name": "document",
+      "options": [
+        {
+          "pattern": [
+            { "list": { "rule": "person" }, "separator": { "text": "\n" } }
+          ]
+        }
+      ]
+    },
+    "person": {
+      "name": "person",
+      "options": [
+        {
+          "pattern": [{ "rule": "text" }],
+          "export": {
+            "properties": [
+              { "key": "id", "value": { "js": "(() => { let i = 100; return () => i++ })()" } },
+              { "key": "name", "value": { "variable": 1 } }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

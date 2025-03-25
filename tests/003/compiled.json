@@ -1,0 +1,63 @@
+{
+  "rules": {
+    "document": {
+      "name": "document",
+      "options": [
+        {
+          "pattern": [
+            { "list": { "rule": "recipe" }, "separator": { "text": "\n" } }
+          ],
+          "export": {
+            "properties": [{ "key": "recipes", "value": { "variable": 1 } }]
+          }
+        }
+      ]
+    },
+    "recipe": {
+      "name": "recipe",
+      "options": [
+        {
+          "pattern": [
+            { "list": { "rule": "count" }, "separator": { "text": "+" } },
+            { "text": "=" },
+            { "list": { "rule": "count" }, "separator": { "text": "+" } },
+            { "list": { "rule": "tag" }, "separator": { "text": "" } }
+          ],
+          "export": {
+            "properties": [
+              { "key": "input", "value": { "variable": 1 } },
+              { "key": "output", "value": { "variable": 3 } },
+              { "key": "tags", "value": { "variable": 4 } }
+            ]
+          }
+        }
+      ]
+    },
+    "count": {
+      "name": "count",
+      "options": [
+        {
+          "pattern": [{ "rule": "number" }, { "rule": "text" }],
+          "export": {
+            "properties": [
+              { "key": { "variable": 2 }, "value": { "variable": 1 } }
+            ]
+          }
+        },
+        {
+          "pattern": [{ "rule": "text" }],
+          "export": { "properties": [{ "key": { "variable": 1 }, "value": 1 }] }
+        }
+      ]
+    },
+    "tag": {
+      "name": "tag",
+      "options": [
+        {
+          "pattern": [{ "text": "#" }, { "rule": "text" }],
+          "export": { "variable": 2 }
+        }
+      ]
+    }
+  }
+}

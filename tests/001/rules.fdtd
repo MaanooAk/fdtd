@@ -1,0 +1,51 @@
+
+document
+rule*rule-sep = { rules: { ...$1 } }
+
+rule-sep
+/\n\n+/
+
+rule
+text '\n' rule-def+'\n' = { $1: { name: $1, options: $3 } }
+
+rule-def
+pattern '=' export = { pattern: $1, export: $3 }
+pattern = { pattern: $1 }
+
+pattern
+opt-term+' '
+
+opt-term
+term '?' = { optional: $1 }
+term
+
+term
+simple-term '*' simple-term = { list: $1, separator: $3 }
+simple-term '+' simple-term = { list: $1, separator: $3, min: 1 }
+simple-term
+
+simple-term
+/[a-z-_]+/ = { rule: $1 }
+string-single = { text: $1 }
+'/' /[^\x2F]*/ '/' = { regex: $2 }
+
+export
+'[' array-export*',' ']' = { elements: $2 }
+'{' dict-export*',' '}' = { properties: $2 }
+array-export
+
+array-export
+string-double
+js
+variable
+number
+boolean
+
+dict-export
+variable ':' export = { key: $1, value: $3 }
+text ':' export = { key: $1, value: $3 }
+variable
+
+variable
+'$' number = { variable: $2 }
+'...$' number = { variable: $2, spread: true }
